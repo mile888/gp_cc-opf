@@ -1,2 +1,1 @@
-# gp_cc-opf
- Gaussian Process CC-OPF framework
+# Gaussian Process Chance-Constraints Optimal Power Flow
