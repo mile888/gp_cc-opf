@@ -1,1 +1,2 @@
-# Gaussian Process Chance-Constraints Optimal Power Flow (GP CC-OPF)
+# gp cc-opf
+Gaussian Process Chance-Constraints Optimal Power Flow
