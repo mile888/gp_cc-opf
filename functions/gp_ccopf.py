@@ -17,7 +17,7 @@ class GP_CCOPF:
     def __init__(self, gp=None, gp_method=None, predefine_probability_y=None, predefine_probability_u=None,
                  R=None, R2=None, ulb=None, uub=None, xlb=None, xub=None, solver_opts=None, normalize=False,
                  X=None, Y=None, Xd=None, alpha=None, per_load=None, per_rs=None, n_load=None):
-         """ Initialize and build the GP CC-OPF solver
+        """ Initialize and build the GP CC-OPF solver
          
         # Arguments:
             gp:           Trained GP model.
@@ -54,8 +54,7 @@ class GP_CCOPF:
             n_load: Number of loads. 
            
         """
-
-        
+            
         build_solver_time = -time.time()
         
         N, Ny, Nu = gp.get_size()
@@ -165,17 +164,18 @@ class GP_CCOPF:
             self.__opti.set_initial(self.__mean, self.__Y.mean())
             self.__opti.set_initial(self.__var, np.ones(self.__Ny))
             
-            prediction_time = -time.time()
+            #prediction_time = -time.time()
             sol = self.__opti.solve()
-            prediction_time += time.time()
+            #prediction_time += time.time()
             
             status          = sol.stats()['return_status']
             num_iter        = sol.stats()["iter_count"]
+            prediction_time = sol.stats()["t_proc_total"]
             
             # Print status 
             print('Status:', status)
             print('Number of iteration:', num_iter)
-            print('Time of solver:', prediction_time)
+            print('CPU time:', prediction_time)
         
             x_u = sol.value(self.__u)
             x_alpha = sol.value(self.__alpha)
